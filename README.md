@@ -302,3 +302,66 @@ Project structure.
             ask_output = "Hi, apakabar?"
             hello_output = "Assalamualaikum Warahmatullah Wabarakatuh, HELLO WORLD!"
 </pre>
+
+&nbsp;
+
+<pre>
+    ❯ terraform destroy -auto-approve
+
+
+            module.stage2.null_resource.echo_word_ask: Refreshing state... [id=6494815015400437356]
+            module.stage1.null_resource.echo_word_salam_hello: Refreshing state... [id=260327161307294055]
+
+            Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+            - destroy
+
+            Terraform will perform the following actions:
+
+            # module.stage1.null_resource.echo_word_salam_hello will be destroyed
+            - resource "null_resource" "echo_word_salam_hello" {
+                - id       = "260327161307294055" -> null
+                - triggers = {
+                    - "always_run" = "2024-04-04T08:17:05Z"
+                    } -> null
+                }
+
+            # module.stage2.null_resource.echo_word_ask will be destroyed
+            - resource "null_resource" "echo_word_ask" {
+                - id       = "6494815015400437356" -> null
+                - triggers = {
+                    - "always_run" = "2024-04-04T08:17:05Z"
+                    } -> null
+                }
+
+            Plan: 0 to add, 0 to change, 2 to destroy.
+
+            Changes to Outputs:
+            - ask_output   = "Hi, apakabar?" -> null
+            - hello_output = "Assalamualaikum Warahmatullah Wabarakatuh, HELLO WORLD!" -> null
+            module.stage2.null_resource.echo_word_ask: Destroying... [id=6494815015400437356]
+            module.stage1.null_resource.echo_word_salam_hello: Destroying... [id=260327161307294055]
+            module.stage2.null_resource.echo_word_ask: Destruction complete after 0s
+            module.stage1.null_resource.echo_word_salam_hello: Destruction complete after 0s
+
+            Destroy complete! Resources: 2 destroyed.
+</pre>
+
+&nbsp;
+
+&nbsp;
+
+---
+
+&nbsp;
+
+<div align="center">
+    <img src="./gambar-petunjuk/well_done.png" alt="well_done" style="display: block; margin: 0 auto;">
+</div> 
+
+&nbsp;
+
+---
+
+&nbsp;
+
+&nbsp;
