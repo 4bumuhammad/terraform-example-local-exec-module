@@ -58,6 +58,7 @@ Project structure.
 <pre>
     ❯ vim provider.tf
 
+
             terraform {
                 required_providers {
                     null = {
@@ -72,6 +73,7 @@ Project structure.
 <pre>
     ❯ vim main.tf
 
+
             module "stage1" {
               source = "./modules/stage1"
               word_transition = local.full_salam_hello
@@ -80,5 +82,26 @@ Project structure.
             module "stage2" {
               source = "./modules/stage2"
               word_transition = var.word_ask
+            }
+</pre>
+
+&nbsp;
+
+<pre>
+    ❯ vim variables.tf
+
+
+            variable "word_hello" {
+              description = "Kalimat Hello World"
+              default     =  "HELLO WORLD!"
+            }
+            
+            locals{
+              full_salam_hello = "Assalamualaikum Warahmatullah Wabarakatuh, ${var.word_hello}"
+            }
+            
+            variable "word_ask" {
+              description = "Kalimat bertanya"
+              default = "Hi, apakabar?"
             }
 </pre>
