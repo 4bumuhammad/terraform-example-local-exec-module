@@ -1,5 +1,5 @@
 output "hello_output" {
-  value = local.full_salam_hello 
+  value = local.full_salam_hello
 }
 
 output "ask_output" {

@@ -165,8 +165,140 @@ Project structure.
 
 &nbsp;
 
+&nbsp;
+
+### &#x1F530; TERRAFORM STAGES :
+
+<pre>
+    ❯ terraform init
+
+            Initializing the backend...
+            Initializing modules...
+
+            Initializing provider plugins...
+            - Reusing previous version of hashicorp/null from the dependency lock file
+            - Using previously-installed hashicorp/null v3.2.2
+
+            Terraform has been successfully initialized!
+
+            You may now begin working with Terraform. Try running "terraform plan" to see
+            any changes that are required for your infrastructure. All Terraform commands
+            should now work.
+
+            If you ever set or change modules or backend configuration for Terraform,
+            rerun this command to reinitialize your working directory. If you forget, other
+            commands will detect it and remind you to do so if necessary.
+</pre>
 
 &nbsp;
 
+<pre>
+    ❯ terraform fmt
+
+        main.tf
+        output.tf
+        variables.tf
+
+
+    ❯ terraform fmt -recursive
+
+        modules/stage1/salam_hello.tf
+        modules/stage2/ask.tf
+
+
+    ❯ terraform validate
+
+        Success! The configuration is valid.
+
+</pre>
 
 &nbsp;
+
+<pre>
+    ❯ terraform plan
+
+
+            module.stage1.null_resource.echo_word_salam_hello: Refreshing state... [id=7529023315021869282]
+            module.stage2.null_resource.echo_word_ask: Refreshing state... [id=76872259101793597]
+
+            Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+            -/+ destroy and then create replacement
+
+            Terraform will perform the following actions:
+
+            # module.stage1.null_resource.echo_word_salam_hello must be replaced
+            -/+ resource "null_resource" "echo_word_salam_hello" {
+                ~ id       = "7529023315021869282" -> (known after apply)
+                ~ triggers = { # forces replacement
+                    ~ "always_run" = "2024-04-04T07:39:13Z" -> (known after apply)
+                    }
+                }
+
+            # module.stage2.null_resource.echo_word_ask must be replaced
+            -/+ resource "null_resource" "echo_word_ask" {
+                ~ id       = "76872259101793597" -> (known after apply)
+                ~ triggers = { # forces replacement
+                    ~ "always_run" = "2024-04-04T07:39:13Z" -> (known after apply)
+                    }
+                }
+
+            Plan: 2 to add, 0 to change, 2 to destroy.
+
+            ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+            Note: You didn't use the -out option to save this plan, so Terraform can't guarantee to take exactly these actions if you run "terraform apply" now.
+</pre>
+
+&nbsp;
+
+<pre>
+    ❯ terraform apply -auto-approve
+
+
+            module.stage1.null_resource.echo_word_salam_hello: Refreshing state... [id=7529023315021869282]
+            module.stage2.null_resource.echo_word_ask: Refreshing state... [id=76872259101793597]
+
+            Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+            -/+ destroy and then create replacement
+
+            Terraform will perform the following actions:
+
+            # module.stage1.null_resource.echo_word_salam_hello must be replaced
+            -/+ resource "null_resource" "echo_word_salam_hello" {
+                ~ id       = "7529023315021869282" -> (known after apply)
+                ~ triggers = { # forces replacement
+                    ~ "always_run" = "2024-04-04T07:39:13Z" -> (known after apply)
+                    }
+                }
+
+            # module.stage2.null_resource.echo_word_ask must be replaced
+            -/+ resource "null_resource" "echo_word_ask" {
+                ~ id       = "76872259101793597" -> (known after apply)
+                ~ triggers = { # forces replacement
+                    ~ "always_run" = "2024-04-04T07:39:13Z" -> (known after apply)
+                    }
+                }
+
+            Plan: 2 to add, 0 to change, 2 to destroy.
+            module.stage2.null_resource.echo_word_ask: Destroying... [id=76872259101793597]
+            module.stage1.null_resource.echo_word_salam_hello: Destroying... [id=7529023315021869282]
+            module.stage2.null_resource.echo_word_ask: Destruction complete after 0s
+            module.stage1.null_resource.echo_word_salam_hello: Destruction complete after 0s
+            module.stage1.null_resource.echo_word_salam_hello: Creating...
+            module.stage2.null_resource.echo_word_ask: Creating...
+            module.stage1.null_resource.echo_word_salam_hello: Provisioning with 'local-exec'...
+            module.stage2.null_resource.echo_word_ask: Provisioning with 'local-exec'...
+            module.stage2.null_resource.echo_word_ask (local-exec): Executing: ["/bin/sh" "-c" "echo 'Hi, apakabar?'"]
+            module.stage1.null_resource.echo_word_salam_hello (local-exec): Executing: ["/bin/sh" "-c" "echo 'Assalamualaikum Warahmatullah Wabarakatuh, HELLO WORLD!'"]
+            module.stage2.null_resource.echo_word_ask (local-exec): Hi, apakabar?
+            module.stage1.null_resource.echo_word_salam_hello (local-exec): Assalamualaikum Warahmatullah Wabarakatuh, HELLO WORLD!
+            module.stage1.null_resource.echo_word_salam_hello: Creation complete after 0s [id=260327161307294055]
+            module.stage2.null_resource.echo_word_ask: Creation complete after 0s [id=6494815015400437356]
+
+            Apply complete! Resources: 2 added, 0 changed, 2 destroyed.
+
+            Outputs:
+
+            ask_output = "Hi, apakabar?"
+            hello_output = "Assalamualaikum Warahmatullah Wabarakatuh, HELLO WORLD!"
+</pre>
