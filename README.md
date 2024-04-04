@@ -52,3 +52,33 @@ Project structure.
 
         3 directories, 6 files
 </pre>
+
+&nbsp;
+
+<pre>
+    ❯ vim provider.tf
+
+            terraform {
+                required_providers {
+                    null = {
+                        source = "hashicorp/null"
+                    }
+                }
+            }
+</pre>
+
+&nbsp;
+
+<pre>
+    ❯ vim main.tf
+
+            module "stage1" {
+              source = "./modules/stage1"
+              word_transition = local.full_salam_hello
+            }
+            
+            module "stage2" {
+              source = "./modules/stage2"
+              word_transition = var.word_ask
+            }
+</pre>
