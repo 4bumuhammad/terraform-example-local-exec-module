@@ -106,6 +106,7 @@ Project structure.
             }
 </pre>
 
+&nbsp;
 
 <pre>
     ❯ vim modules/stage1/salam_hello.tf
@@ -126,6 +127,8 @@ Project structure.
             }
 </pre>
 
+&nbsp;
+
 <pre>
     ❯ vim modules/stage2/ask.tf
 
@@ -144,3 +147,15 @@ Project structure.
                   }
             }
 </pre>
+
+&nbsp;
+
+
+
+&nbsp;
+
+
+&nbsp;
+
+
+&nbsp;
